@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:users_test_task/common/app_colors.dart';
+import 'package:users_test_task/features/posts/presentation/bloc/users_list_cubit/users_list_cubit.dart';
 import 'package:users_test_task/features/users/presentation/bloc/users_list_cubit/users_list_cubit.dart';
 import 'package:users_test_task/features/users/presentation/pages/users_screen.dart';
 import 'package:users_test_task/locator_service.dart' as di;
@@ -21,6 +22,8 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<UsersListCubit>(
               create: (context) => sl<UsersListCubit>()..loadUsers()),
+          BlocProvider<PostsListCubit>(
+              create: (context) => sl<PostsListCubit>()),
         ],
         child: MaterialApp(
           theme: ThemeData.dark().copyWith(
