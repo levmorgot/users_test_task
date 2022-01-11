@@ -20,11 +20,10 @@ class UserRemoteDataSource implements IUserRemoteDataSource {
   }
 
   Future<List<UserModel>> _getUsersFromUrl(String url) async {
-    print(url);
     final response = await client
         .get(Uri.parse(url), headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
-      final users = json.decode(response.body)['data'];
+      final users = json.decode(response.body);
       return (users as List)
           .map((user) => UserModel.fromJson(user))
           .toList();

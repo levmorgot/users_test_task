@@ -37,6 +37,7 @@ class UserRepository implements IUserRepository {
     final lastEdit = await _getLastEdit();
     return lastEdit.fold((failure) => Left(failure), (date) async {
       if (date != DateTime.now().toString().substring(0, 10)) {
+        print('Get users from server');
         try {
           final remoteUsers = await getUsers();
           localDataSource
@@ -47,6 +48,7 @@ class UserRepository implements IUserRepository {
           return Left(ServerFailure());
         }
       } else {
+        print('Get users from cache');
         try {
           final localFilials = await localDataSource.getLastUsersFromCache();
           return Right(localFilials);

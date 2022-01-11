@@ -30,7 +30,9 @@ class UserModel extends UserEntity {
       email: json['email'],
       phone: json['phone'],
       website: json['website'],
-      address: _getFullAddress(json['address']),
+      address: json['address'].runtimeType == String
+          ? json['address']
+          : _getFullAddress(json['address']),
       company: CompanyModel.fromJson(json['company']),
     );
   }
