@@ -10,7 +10,7 @@ class PostsListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Список пользователей'),
+        title: const Text('Список постов'),
         centerTitle: true,
       ),
       body: PostsList(

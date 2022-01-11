@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:users_test_task/core/error/exception.dart';
 import 'package:users_test_task/core/error/failure.dart';
-import 'package:users_test_task/features/posts/data/datasources/user_local_data_sources.dart';
-import 'package:users_test_task/features/posts/data/datasources/user_remote_data_sources.dart';
-import 'package:users_test_task/features/posts/data/models/user_model.dart';
+import 'package:users_test_task/features/posts/data/datasources/post_local_data_sources.dart';
+import 'package:users_test_task/features/posts/data/datasources/post_remote_data_sources.dart';
+import 'package:users_test_task/features/posts/data/models/post_model.dart';
 import 'package:users_test_task/features/posts/domain/entities/post_entity.dart';
-import 'package:users_test_task/features/posts/domain/repositories/user_repository.dart';
+import 'package:users_test_task/features/posts/domain/repositories/post_repository.dart';
 
 class PostRepository implements IPostRepository {
   final IPostRemoteDataSource remoteDataSource;

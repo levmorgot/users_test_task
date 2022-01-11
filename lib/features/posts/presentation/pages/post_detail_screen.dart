@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:users_test_task/features/posts/domain/entities/post_entity.dart';
+import 'package:users_test_task/features/posts/presentation/widgets/posts_comments_list_widget.dart';
 
 class PostDetailPage extends StatelessWidget {
   final PostEntity post;
@@ -10,7 +11,7 @@ class PostDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(post.title),
+        title: const Text('Пост пользователя'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -19,7 +20,49 @@ class PostDetailPage extends StatelessWidget {
           alignment: Alignment.center,
           child: Column(
             children: [
-              Text(post.body),
+              Text(
+                post.title,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                post.body,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Divider(
+                color: Colors.grey,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "Комметнарии",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 500,
+                child: PostsCommentsList(
+                  postId: post.id,
+                ),
+              ),
             ],
           ),
         ),

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:users_test_task/core/error/exception.dart';
-import 'package:users_test_task/features/posts/data/models/user_model.dart';
+import 'package:users_test_task/features/posts/data/models/post_model.dart';
 
 abstract class IPostRemoteDataSource {
   Future<List<PostModel>> getAllPostsForUser(int userId);

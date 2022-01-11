@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:users_test_task/core/error/failure.dart';
-import 'package:users_test_task/features/posts/domain/usecases/get_all_users.dart';
-import 'package:users_test_task/features/posts/presentation/bloc/users_list_cubit/users_list_state.dart';
+import 'package:users_test_task/features/posts/domain/usecases/get_all_posts.dart';
+import 'package:users_test_task/features/posts/presentation/bloc/posts_list_cubit/posts_list_state.dart';
 
 class PostsListCubit extends Cubit<PostState> {
   final GetAllPostsForUser getAllPosts;

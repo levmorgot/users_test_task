@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:users_test_task/core/error/exception.dart';
-import 'package:users_test_task/features/posts/data/models/user_model.dart';
+import 'package:users_test_task/features/posts/data/models/post_model.dart';
 
 abstract class IPostLocalDataSource {
   Future<List<PostModel>> getLastPostsForUserFromCache(int userId);

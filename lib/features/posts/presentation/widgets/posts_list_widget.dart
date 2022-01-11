@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:users_test_task/features/posts/domain/entities/post_entity.dart';
-import 'package:users_test_task/features/posts/presentation/bloc/users_list_cubit/users_list_cubit.dart';
-import 'package:users_test_task/features/posts/presentation/bloc/users_list_cubit/users_list_state.dart';
+import 'package:users_test_task/features/posts/presentation/bloc/posts_list_cubit/posts_list_cubit.dart';
+import 'package:users_test_task/features/posts/presentation/bloc/posts_list_cubit/posts_list_state.dart';
 import 'package:users_test_task/features/posts/presentation/widgets/post_preview_card_widget.dart';
 
 class PostsList extends StatelessWidget {
