@@ -23,7 +23,7 @@ class UserCard extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                user.name,
+                user.username,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -32,7 +32,7 @@ class UserCard extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                user.username,
+                user.name,
                 style: const TextStyle(
                   color: AppColors.greyColor,
                   fontStyle: FontStyle.italic,
