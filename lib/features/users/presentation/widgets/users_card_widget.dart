@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:users_test_task/common/app_colors.dart';
 import 'package:users_test_task/features/users/domain/entities/user_entity.dart';
+import 'package:users_test_task/features/users/presentation/pages/user_detail_screen.dart';
 
 class UserCard extends StatelessWidget {
   final UserEntity user;
@@ -10,9 +11,12 @@ class UserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () {
-      //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DepartmentsPage(filialCacheId: filial.cashId, filialId: filial.id,)));
-      // },
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => UserDetailPage(user: user)));
+      },
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.cellBackground,
