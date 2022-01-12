@@ -7,8 +7,8 @@ import 'package:users_test_task/features/posts/data/models/posts_comment_model.d
 abstract class IPostsCommentRemoteDataSource {
   Future<List<PostsCommentModel>> getAllCommentsForPosts(int postId);
 
-  Future<PostsCommentModel> sendCommentForPost(int postId, String name,
-      String email, String text);
+  Future<PostsCommentModel> sendCommentForPost(
+      int postId, String name, String email, String text);
 }
 
 class PostsCommentRemoteDataSource implements IPostsCommentRemoteDataSource {
@@ -36,23 +36,18 @@ class PostsCommentRemoteDataSource implements IPostsCommentRemoteDataSource {
   }
 
   @override
-  Future<PostsCommentModel> sendCommentForPost(int postId, String name,
-      String email, String text) async {
+  Future<PostsCommentModel> sendCommentForPost(
+      int postId, String name, String email, String text) async {
     String url = 'https://jsonplaceholder.typicode.com/posts/$postId/comments';
     print(url);
-    final response = await client
-        .post(Uri.parse(
-        url), headers: {'Content-Type': 'application/json'}, body: {
-          "name": name,
-          "email": email,
-          "body": text
-    });
-    if (response.statusCode == 200) {
+    final response = await client.post(Uri.parse(url),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({"name": name, "email": email, "body": text}));
+    if (response.statusCode == 201) {
       final post = json.decode(response.body);
       return PostsCommentModel.fromJson(post);
     } else {
       throw ServerException();
     }
   }
-
 }

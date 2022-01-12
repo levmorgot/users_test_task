@@ -37,7 +37,7 @@ Future<void> init() async {
   );
 
   sl.registerFactory(
-        () => PostsCommentsListCubit(getAllCommentsForPosts: sl()),
+        () => PostsCommentsListCubit(getAllCommentsForPosts: sl(), sendCommentsForPost: sl()),
   );
 
   // UseCases

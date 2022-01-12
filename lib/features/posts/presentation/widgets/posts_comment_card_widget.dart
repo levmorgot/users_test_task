@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:users_test_task/common/app_colors.dart';
-import 'package:users_test_task/features/posts/domain/entities/post_entity.dart';
 import 'package:users_test_task/features/posts/domain/entities/posts_comment_entity.dart';
-import 'package:users_test_task/features/posts/presentation/pages/post_detail_screen.dart';
 
 class PostsCommentCard extends StatelessWidget {
   final PostsCommentEntity comment;
@@ -31,6 +29,15 @@ class PostsCommentCard extends StatelessWidget {
                 comment.email,
                 style: const TextStyle(
                   fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                comment.name,
+                style: const TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,

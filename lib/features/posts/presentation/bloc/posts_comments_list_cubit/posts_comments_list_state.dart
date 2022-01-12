@@ -37,3 +37,13 @@ class PostsCommentErrorState extends PostsCommentState {
   @override
   List<Object> get props => [message];
 }
+
+
+class PostsCommentSentState extends PostsCommentState {
+  final String resultMessage;
+
+  const PostsCommentSentState({required this.resultMessage});
+
+  @override
+  List<Object> get props => [resultMessage];
+}

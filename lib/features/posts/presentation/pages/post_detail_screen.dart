@@ -10,6 +10,7 @@ class PostDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Пост пользователя'),
         centerTitle: true,
@@ -57,11 +58,8 @@ class PostDetailPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: 500,
-                child: PostsCommentsList(
-                  postId: post.id,
-                ),
+              PostsCommentsList(
+                postId: post.id,
               ),
             ],
           ),
