@@ -29,7 +29,7 @@ class PostsListPreview extends StatelessWidget {
       return Column(
         children: [
           const Text(
-            "Посты пользователя",
+            'Посты пользователя',
             style: TextStyle(
               fontSize: 20,
             ),

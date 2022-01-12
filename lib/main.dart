@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:users_test_task/common/app_colors.dart';
+import 'package:users_test_task/features/albums/presentation/bloc/albums_list_cubit/albums_list_cubit.dart';
 import 'package:users_test_task/features/posts/presentation/bloc/posts_comments_list_cubit/posts_comments_list_cubit.dart';
 import 'package:users_test_task/features/posts/presentation/bloc/posts_list_cubit/posts_list_cubit.dart';
 import 'package:users_test_task/features/users/presentation/bloc/users_list_cubit/users_list_cubit.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
 
           BlocProvider<PostsCommentsListCubit>(
               create: (context) => sl<PostsCommentsListCubit>()),
+
+          BlocProvider<AlbumsListCubit>(
+              create: (context) => sl<AlbumsListCubit>()),
         ],
         child: MaterialApp(
           theme: ThemeData.dark().copyWith(

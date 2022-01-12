@@ -1,5 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:users_test_task/features/albums/data/datasources/album_local_data_sources.dart';
+import 'package:users_test_task/features/albums/data/datasources/album_remote_data_sources.dart';
+import 'package:users_test_task/features/albums/data/repositories/album_repository.dart';
+import 'package:users_test_task/features/albums/domain/repositories/album_repository.dart';
+import 'package:users_test_task/features/albums/domain/usecases/get_all_albums_for_user.dart';
+import 'package:users_test_task/features/albums/presentation/bloc/albums_list_cubit/albums_list_cubit.dart';
 import 'package:users_test_task/features/posts/data/datasources/post_local_data_sources.dart';
 import 'package:users_test_task/features/posts/data/datasources/post_remote_data_sources.dart';
 import 'package:users_test_task/features/posts/data/datasources/posts_comment_local_data_sources.dart';
@@ -40,6 +46,10 @@ Future<void> init() async {
         () => PostsCommentsListCubit(getAllCommentsForPosts: sl(), sendCommentsForPost: sl()),
   );
 
+  sl.registerFactory(
+        () => AlbumsListCubit(getAllAlbums: sl()),
+  );
+
   // UseCases
   sl.registerLazySingleton(() => GetAllUsers(sl()));
 
@@ -48,6 +58,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetAllCommentsForPosts(sl()));
 
   sl.registerLazySingleton(() => SendCommentsForPost(sl()));
+
+  sl.registerLazySingleton(() => GetAllAlbumsForUser(sl()));
 
   // Repository users
   sl.registerLazySingleton<IUserRepository>(
@@ -102,6 +114,25 @@ Future<void> init() async {
 
   sl.registerLazySingleton<IPostsCommentLocalDataSource>(
         () => PostsCommentLocalDataSource(sharedPreferences: sl()),
+  );
+
+
+  // Repository albums
+  sl.registerLazySingleton<IAlbumRepository>(
+        () => AlbumRepository(
+      remoteDataSource: sl(),
+      localDataSource: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<IAlbumRemoteDataSource>(
+        () => AlbumRemoteDataSource(
+      client: http.Client(),
+    ),
+  );
+
+  sl.registerLazySingleton<IAlbumLocalDataSource>(
+        () => AlbumLocalDataSource(sharedPreferences: sl()),
   );
 
   // Core

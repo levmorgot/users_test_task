@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:users_test_task/features/albums/presentation/widgets/albums_preview_list_widget.dart';
 import 'package:users_test_task/features/posts/presentation/widgets/posts_list_preview_widget.dart';
 import 'package:users_test_task/features/users/domain/entities/user_entity.dart';
 import 'package:users_test_task/features/users/presentation/widgets/user_info_widget.dart';
@@ -24,6 +25,7 @@ class UserDetailPage extends StatelessWidget {
               UserInfo(user: user),
               const SizedBox(height: 30,),
               PostsListPreview(userId: user.id),
+              AlbumsPreviewList(userId: user.id),
             ],
           ),
         ),
