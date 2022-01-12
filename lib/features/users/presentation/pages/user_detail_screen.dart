@@ -25,6 +25,7 @@ class UserDetailPage extends StatelessWidget {
               UserInfo(user: user),
               const SizedBox(height: 30,),
               PostsListPreview(userId: user.id),
+              const SizedBox(height: 30,child: Divider(color: Colors.grey,),),
               AlbumsPreviewList(userId: user.id),
             ],
           ),
