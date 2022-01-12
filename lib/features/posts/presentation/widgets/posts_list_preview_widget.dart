@@ -27,38 +27,46 @@ class PostsListPreview extends StatelessWidget {
             : posts;
       }
       return Column(
-          children: [
-            const Text("Посты пользователя",
-              style: TextStyle(
-                fontSize: 20,
-              ),),
-            const SizedBox(height: 10,),
-            SizedBox(
-              height: 250,
-              child: ListView.separated(
-                padding: const EdgeInsets.all(8.0),
-                itemBuilder: (context, index) {
-                  return PostPreviewCard(post: posts[index]);
-                },
-                separatorBuilder: (context, index) {
-                  return Divider(
-                    color: Colors.grey[400],
-                  );
-                },
-                itemCount: posts.length,
-              ),
+        children: [
+          const Text(
+            "Посты пользователя",
+            style: TextStyle(
+              fontSize: 20,
             ),
-            const SizedBox(height: 10,),
-            TextButton(
-              child: const Text("К списку постов"),
-              onPressed: () {
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          SizedBox(
+            height: 250,
+            child: ListView.separated(
+              padding: const EdgeInsets.all(8.0),
+              itemBuilder: (context, index) {
+                return PostPreviewCard(post: posts[index]);
+              },
+              separatorBuilder: (context, index) {
+                return Divider(
+                  color: Colors.grey[400],
+                );
+              },
+              itemCount: posts.length,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          TextButton(
+            child: const Text("К списку постов"),
+            onPressed: () {
               Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => PostsListPage(userId: userId)));
-            },),
-          ],
-        );
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          PostsListPage(userId: userId)));
+            },
+          ),
+        ],
+      );
     });
   }
 
