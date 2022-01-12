@@ -50,10 +50,10 @@ class AlbumLocalDataSource implements IAlbumLocalDataSource {
 
   @override
   Future<String> getLastEdit(int userId) {
-    final jsonDoctorLastEdit = sharedPreferences.getString(cacheAlbumsLastEdit + '$userId');
-    if (jsonDoctorLastEdit != null && jsonDoctorLastEdit.isNotEmpty) {
+    final jsonAlbumList = sharedPreferences.getString(cacheAlbumsLastEdit + '$userId');
+    if (jsonAlbumList != null && jsonAlbumList.isNotEmpty) {
       try {
-        return Future.value(jsonDoctorLastEdit);
+        return Future.value(jsonAlbumList);
       } catch (e) {
         throw CacheException();
       }

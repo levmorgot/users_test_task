@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:users_test_task/common/app_colors.dart';
 import 'package:users_test_task/features/albums/domain/entities/album_entity.dart';
+import 'package:users_test_task/features/albums/presentation/widgets/photos_slider_widget.dart';
 
 class AlbumDetailPage extends StatelessWidget {
   final AlbumEntity album;
@@ -23,19 +23,13 @@ class AlbumDetailPage extends StatelessWidget {
               Text(
                 album.title,
                 style: const TextStyle(
-                  color: AppColors.greyColor,
+                  fontSize: 22,
                   fontStyle: FontStyle.italic,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const Text(
-                'Тут надо фотки',
-                style: TextStyle(
-                  color: AppColors.greyColor,
-                  fontStyle: FontStyle.italic,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              const SizedBox(height: 20,),
+              PhotosSlider(albumId: album.id),
             ],
           ),
         ),

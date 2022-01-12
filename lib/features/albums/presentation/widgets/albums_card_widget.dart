@@ -35,14 +35,6 @@ class AlbumCard extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
-              const Text(
-                'Тут надо фотки',
-                style: TextStyle(
-                  color: AppColors.greyColor,
-                  fontStyle: FontStyle.italic,
-                ),
-                textAlign: TextAlign.center,
-              ),
             ],
           ),
         ),

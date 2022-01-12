@@ -2,10 +2,16 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:users_test_task/features/albums/data/datasources/album_local_data_sources.dart';
 import 'package:users_test_task/features/albums/data/datasources/album_remote_data_sources.dart';
+import 'package:users_test_task/features/albums/data/datasources/photo_local_data_sources.dart';
+import 'package:users_test_task/features/albums/data/datasources/photo_remote_data_sources.dart';
 import 'package:users_test_task/features/albums/data/repositories/album_repository.dart';
+import 'package:users_test_task/features/albums/data/repositories/photo_repository.dart';
 import 'package:users_test_task/features/albums/domain/repositories/album_repository.dart';
+import 'package:users_test_task/features/albums/domain/repositories/photo_repository.dart';
 import 'package:users_test_task/features/albums/domain/usecases/get_all_albums_for_user.dart';
+import 'package:users_test_task/features/albums/domain/usecases/get_all_photos_for_album.dart';
 import 'package:users_test_task/features/albums/presentation/bloc/albums_list_cubit/albums_list_cubit.dart';
+import 'package:users_test_task/features/albums/presentation/bloc/photos_list_cubit/photos_list_cubit.dart';
 import 'package:users_test_task/features/posts/data/datasources/post_local_data_sources.dart';
 import 'package:users_test_task/features/posts/data/datasources/post_remote_data_sources.dart';
 import 'package:users_test_task/features/posts/data/datasources/posts_comment_local_data_sources.dart';
@@ -47,7 +53,11 @@ Future<void> init() async {
   );
 
   sl.registerFactory(
-        () => AlbumsListCubit(getAllAlbums: sl()),
+        () => AlbumsListCubit(getAllAlbums: sl(), getAllPhotos: sl()),
+  );
+
+  sl.registerFactory(
+        () => PhotosListCubit(getAllPhotos: sl()),
   );
 
   // UseCases
@@ -60,6 +70,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => SendCommentsForPost(sl()));
 
   sl.registerLazySingleton(() => GetAllAlbumsForUser(sl()));
+
+  sl.registerLazySingleton(() => GetAllPhotosForAlbum(sl()));
 
   // Repository users
   sl.registerLazySingleton<IUserRepository>(
@@ -133,6 +145,24 @@ Future<void> init() async {
 
   sl.registerLazySingleton<IAlbumLocalDataSource>(
         () => AlbumLocalDataSource(sharedPreferences: sl()),
+  );
+
+  // Repository photos
+  sl.registerLazySingleton<IPhotoRepository>(
+        () => PhotoRepository(
+      remoteDataSource: sl(),
+      localDataSource: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<IPhotoRemoteDataSource>(
+        () => PhotoRemoteDataSource(
+      client: http.Client(),
+    ),
+  );
+
+  sl.registerLazySingleton<IPhotoLocalDataSource>(
+        () => PhotoLocalDataSource(sharedPreferences: sl()),
   );
 
   // Core
