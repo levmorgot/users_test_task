@@ -21,6 +21,7 @@ class UserInfo extends StatelessWidget {
         const SizedBox(height: 10,),
         ..._buildInfoField("Name:", user.name),
         ..._buildInfoField("Email:", user.email),
+        ..._buildInfoField("Phone:", user.phone),
         ..._buildInfoField("Website:", user.website),
         ..._buildCompanyInfo(user.company),
         ..._buildInfoField("Address:", user.address),

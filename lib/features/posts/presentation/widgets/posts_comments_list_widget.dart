@@ -38,6 +38,16 @@ class PostsCommentsList extends StatelessWidget {
 
       return Column(
         children: [
+          const Text(
+            "Комментарии",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           addCommentResult ?? Container(),
           const SizedBox(height: 10,),
           SizedBox(

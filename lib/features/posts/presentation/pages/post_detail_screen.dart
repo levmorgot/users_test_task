@@ -48,16 +48,6 @@ class PostDetailPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Text(
-                "Комметнарии",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
               PostsCommentsList(
                 postId: post.id,
               ),
