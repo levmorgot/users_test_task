@@ -21,7 +21,7 @@ class PostsCommentRepository implements IPostsCommentRepository {
       return remoteDataSource.getAllCommentsForPosts(postId);
     });
     return allComments.fold(
-        (failure) => Left(failure), (posts) => Right(posts));
+        (failure) => Left(failure), (comments) => Right(comments));
   }
 
   Future<Either<Failure, String>> _getLastEdit(int postId) async {
@@ -34,24 +34,24 @@ class PostsCommentRepository implements IPostsCommentRepository {
   }
 
   Future<Either<Failure, List<PostsCommentModel>>> _getComments(
-      int postId, Future<List<PostsCommentModel>> Function() getPosts) async {
+      int postId, Future<List<PostsCommentModel>> Function() getComments) async {
     final lastEdit = await _getLastEdit(postId);
     return lastEdit.fold((failure) => Left(failure), (date) async {
       if (date != DateTime.now().toString().substring(0, 10)) {
         try {
-          final remotePosts = await getPosts();
+          final remoteComments = await getComments();
           localDataSource.lastEditToCache(
               postId, DateTime.now().toString().substring(0, 10));
-          localDataSource.commentsForPostToCache(postId, remotePosts);
-          return Right(remotePosts);
+          localDataSource.commentsForPostToCache(postId, remoteComments);
+          return Right(remoteComments);
         } on ServerException {
           return Left(ServerFailure());
         }
       } else {
         try {
-          final localFilials =
+          final localComments =
               await localDataSource.getLastCommentsForPostsFromCache(postId);
-          return Right(localFilials);
+          return Right(localComments);
         } on CacheException {
           return Left(CacheFailure());
         }

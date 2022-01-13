@@ -48,9 +48,9 @@ class PostRepository implements IPostRepository {
         }
       } else {
         try {
-          final localFilials =
+          final localFPosts =
               await localDataSource.getLastPostsForUserFromCache(userId);
-          return Right(localFilials);
+          return Right(localFPosts);
         } on CacheException {
           return Left(CacheFailure());
         }

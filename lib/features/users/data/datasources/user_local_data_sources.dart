@@ -50,10 +50,10 @@ class UserLocalDataSource implements IUserLocalDataSource {
 
   @override
   Future<String> getLastEdit() {
-    final jsonDoctorLastEdit = sharedPreferences.getString(cacheUsersLastEdit);
-    if (jsonDoctorLastEdit != null && jsonDoctorLastEdit.isNotEmpty) {
+    final jsonUserLastEdit = sharedPreferences.getString(cacheUsersLastEdit);
+    if (jsonUserLastEdit != null && jsonUserLastEdit.isNotEmpty) {
       try {
-        return Future.value(jsonDoctorLastEdit);
+        return Future.value(jsonUserLastEdit);
       } catch (e) {
         throw CacheException();
       }

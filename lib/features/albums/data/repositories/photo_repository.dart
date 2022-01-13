@@ -49,9 +49,9 @@ class PhotoRepository implements IPhotoRepository {
         }
       } else {
         try {
-          final localFilials =
+          final localPosts =
               await localDataSource.getLastPhotosForAlbumFromCache(albumId);
-          return Right(localFilials);
+          return Right(localPosts);
         } on CacheException {
           return Left(CacheFailure());
         }

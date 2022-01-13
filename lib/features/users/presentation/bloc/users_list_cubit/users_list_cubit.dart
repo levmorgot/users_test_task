@@ -17,7 +17,7 @@ class UsersListCubit extends Cubit<UserState> {
 
     emit(failureOrUsers.fold(
         (failure) => UserErrorState(message: _mapFailureMessage(failure)),
-        (filials) => UserLoadedState(filials)));
+        (users) => UserLoadedState(users)));
   }
 
   String _mapFailureMessage(Failure failure) {

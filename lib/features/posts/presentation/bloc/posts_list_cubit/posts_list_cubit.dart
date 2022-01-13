@@ -17,7 +17,7 @@ class PostsListCubit extends Cubit<PostState> {
 
     emit(failureOrPosts.fold(
         (failure) => PostErrorState(message: _mapFailureMessage(failure)),
-        (filials) => PostLoadedState(filials)));
+        (posts) => PostLoadedState(posts)));
   }
 
   String _mapFailureMessage(Failure failure) {

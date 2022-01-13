@@ -49,9 +49,9 @@ class AlbumRepository implements IAlbumRepository {
         }
       } else {
         try {
-          final localFilials =
+          final localAlbums =
               await localDataSource.getLastAlbumsForUserFromCache(userId);
-          return Right(localFilials);
+          return Right(localAlbums);
         } on CacheException {
           return Left(CacheFailure());
         }

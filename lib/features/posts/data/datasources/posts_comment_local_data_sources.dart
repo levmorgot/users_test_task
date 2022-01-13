@@ -59,11 +59,11 @@ class PostsCommentLocalDataSource implements IPostsCommentLocalDataSource {
 
   @override
   Future<String> getLastEdit(int postId) {
-    final jsonDoctorLastEdit =
+    final jsonCommentsLastEdit =
         sharedPreferences.getString(cachePostsCommentsLastEdit + '$postId');
-    if (jsonDoctorLastEdit != null && jsonDoctorLastEdit.isNotEmpty) {
+    if (jsonCommentsLastEdit != null && jsonCommentsLastEdit.isNotEmpty) {
       try {
-        return Future.value(jsonDoctorLastEdit);
+        return Future.value(jsonCommentsLastEdit);
       } catch (e) {
         throw CacheException();
       }

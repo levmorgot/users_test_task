@@ -47,8 +47,8 @@ class UserRepository implements IUserRepository {
         }
       } else {
         try {
-          final localFilials = await localDataSource.getLastUsersFromCache();
-          return Right(localFilials);
+          final localUsers = await localDataSource.getLastUsersFromCache();
+          return Right(localUsers);
         } on CacheException {
           return Left(CacheFailure());
         }
