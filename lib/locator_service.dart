@@ -11,7 +11,6 @@ import 'package:users_test_task/features/albums/domain/repositories/photo_reposi
 import 'package:users_test_task/features/albums/domain/usecases/get_all_albums_for_user.dart';
 import 'package:users_test_task/features/albums/domain/usecases/get_all_photos_for_album.dart';
 import 'package:users_test_task/features/albums/presentation/bloc/albums_list_cubit/albums_list_cubit.dart';
-import 'package:users_test_task/features/albums/presentation/bloc/photos_list_cubit/photos_list_cubit.dart';
 import 'package:users_test_task/features/posts/data/datasources/post_local_data_sources.dart';
 import 'package:users_test_task/features/posts/data/datasources/post_remote_data_sources.dart';
 import 'package:users_test_task/features/posts/data/datasources/posts_comment_local_data_sources.dart';
@@ -53,11 +52,7 @@ Future<void> init() async {
   );
 
   sl.registerFactory(
-        () => AlbumsListCubit(getAllAlbums: sl(), getAllPhotos: sl()),
-  );
-
-  sl.registerFactory(
-        () => PhotosListCubit(getAllPhotos: sl()),
+        () => AlbumsListCubit(getAllAlbums: sl(), getAllPhotosForAlbum: sl()),
   );
 
   // UseCases

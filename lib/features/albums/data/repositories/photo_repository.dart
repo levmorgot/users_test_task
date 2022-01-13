@@ -38,7 +38,6 @@ class PhotoRepository implements IPhotoRepository {
     final lastEdit = await _getLastEdit(albumId);
     return lastEdit.fold((failure) => Left(failure), (date) async {
       if (date != DateTime.now().toString().substring(0, 10)) {
-        print('Get photos from server');
         try {
           final remotePhotos = await getPhotos();
           localDataSource.lastEditToCache(
@@ -49,7 +48,6 @@ class PhotoRepository implements IPhotoRepository {
           return Left(ServerFailure());
         }
       } else {
-        print('Get photos from cache');
         try {
           final localFilials =
               await localDataSource.getLastPhotosForAlbumFromCache(albumId);

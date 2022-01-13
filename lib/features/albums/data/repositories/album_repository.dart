@@ -38,7 +38,6 @@ class AlbumRepository implements IAlbumRepository {
     final lastEdit = await _getLastEdit(userId);
     return lastEdit.fold((failure) => Left(failure), (date) async {
       if (date != DateTime.now().toString().substring(0, 10)) {
-        print('Get albums from server');
         try {
           final remoteAlbums = await getAlbums();
           localDataSource.lastEditToCache(
@@ -49,7 +48,6 @@ class AlbumRepository implements IAlbumRepository {
           return Left(ServerFailure());
         }
       } else {
-        print('Get albums from cache');
         try {
           final localFilials =
               await localDataSource.getLastAlbumsForUserFromCache(userId);

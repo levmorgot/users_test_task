@@ -38,7 +38,6 @@ class PostsCommentRepository implements IPostsCommentRepository {
     final lastEdit = await _getLastEdit(postId);
     return lastEdit.fold((failure) => Left(failure), (date) async {
       if (date != DateTime.now().toString().substring(0, 10)) {
-        print('Get posts comments from server');
         try {
           final remotePosts = await getPosts();
           localDataSource.lastEditToCache(
@@ -49,7 +48,6 @@ class PostsCommentRepository implements IPostsCommentRepository {
           return Left(ServerFailure());
         }
       } else {
-        print('Get posts comments from cache');
         try {
           final localFilials =
               await localDataSource.getLastCommentsForPostsFromCache(postId);

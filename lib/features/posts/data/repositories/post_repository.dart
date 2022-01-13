@@ -37,7 +37,6 @@ class PostRepository implements IPostRepository {
     final lastEdit = await _getLastEdit(userId);
     return lastEdit.fold((failure) => Left(failure), (date) async {
       if (date != DateTime.now().toString().substring(0, 10)) {
-        print('Get posts from server');
         try {
           final remotePosts = await getPosts();
           localDataSource
@@ -48,7 +47,6 @@ class PostRepository implements IPostRepository {
           return Left(ServerFailure());
         }
       } else {
-        print('Get posts from cache');
         try {
           final localFilials = await localDataSource.getLastPostsForUserFromCache(userId);
           return Right(localFilials);

@@ -39,7 +39,6 @@ class PostsCommentRemoteDataSource implements IPostsCommentRemoteDataSource {
   Future<PostsCommentModel> sendCommentForPost(
       int postId, String name, String email, String text) async {
     String url = 'https://jsonplaceholder.typicode.com/posts/$postId/comments';
-    print(url);
     final response = await client.post(Uri.parse(url),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({"name": name, "email": email, "body": text}));
