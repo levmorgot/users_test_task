@@ -13,7 +13,6 @@ class PostsCommentParams extends Equatable {
     required this.text,
   });
 
-
   @override
   List<Object?> get props => [postId, name, email, text];
 }

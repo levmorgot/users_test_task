@@ -5,7 +5,11 @@ class PhotoCacheImage extends StatelessWidget {
   final String photoUrl;
   final double width, height;
 
-  const PhotoCacheImage({Key? key, required this.photoUrl, required this.width, required this.height})
+  const PhotoCacheImage(
+      {Key? key,
+      required this.photoUrl,
+      required this.width,
+      required this.height})
       : super(key: key);
 
   @override
@@ -23,9 +27,7 @@ class PhotoCacheImage extends StatelessWidget {
         );
       },
       errorWidget: (context, url, error) {
-        return _imageWidget(
-          const AssetImage('assets/image/404.png')
-        );
+        return _imageWidget(const AssetImage('assets/image/404.png'));
       },
     );
   }
@@ -33,12 +35,11 @@ class PhotoCacheImage extends StatelessWidget {
   Widget _imageWidget(ImageProvider imageProvider) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        image: DecorationImage(
-          image: imageProvider,
-          fit: BoxFit.cover,
-        )
-      ),
+          borderRadius: BorderRadius.circular(8),
+          image: DecorationImage(
+            image: imageProvider,
+            fit: BoxFit.cover,
+          )),
     );
   }
 }

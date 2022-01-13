@@ -19,14 +19,16 @@ class PhotosPreviewRow extends StatelessWidget {
     List<Widget> photoWidgets = [];
     final length = photos.length < 3 ? photos.length : 3;
     for (var i = 0; i < length; i++) {
-      photoWidgets.add(Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: PhotoCacheImage(
-          height: 70,
-          width: 70,
-          photoUrl: photos[i].thumbnailUrl,
+      photoWidgets.add(
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: PhotoCacheImage(
+            height: 70,
+            width: 70,
+            photoUrl: photos[i].thumbnailUrl,
+          ),
         ),
-      ),);
+      );
     }
     return photoWidgets;
   }

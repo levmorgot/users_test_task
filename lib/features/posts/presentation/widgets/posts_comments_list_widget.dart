@@ -53,7 +53,9 @@ class PostsCommentsList extends StatelessWidget {
             height: 10,
           ),
           addCommentResult ?? Container(),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           SizedBox(
             height: 500,
             child: ListView.separated(

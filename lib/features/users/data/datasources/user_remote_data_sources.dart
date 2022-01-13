@@ -15,8 +15,7 @@ class UserRemoteDataSource implements IUserRemoteDataSource {
 
   @override
   Future<List<UserModel>> getAllUsers() async {
-    return await _getUsersFromUrl(
-        'https://jsonplaceholder.typicode.com/users');
+    return await _getUsersFromUrl('https://jsonplaceholder.typicode.com/users');
   }
 
   Future<List<UserModel>> _getUsersFromUrl(String url) async {
@@ -24,9 +23,7 @@ class UserRemoteDataSource implements IUserRemoteDataSource {
         .get(Uri.parse(url), headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       final users = json.decode(response.body);
-      return (users as List)
-          .map((user) => UserModel.fromJson(user))
-          .toList();
+      return (users as List).map((user) => UserModel.fromJson(user)).toList();
     } else {
       throw ServerException();
     }

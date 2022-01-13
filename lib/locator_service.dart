@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:users_test_task/features/albums/data/datasources/album_local_data_sources.dart';
 import 'package:users_test_task/features/albums/data/datasources/album_remote_data_sources.dart';
@@ -31,10 +32,6 @@ import 'package:users_test_task/features/users/domain/repositories/user_reposito
 import 'package:users_test_task/features/users/domain/usecases/get_all_users.dart';
 import 'package:users_test_task/features/users/presentation/bloc/users_list_cubit/users_list_cubit.dart';
 
-
-import 'package:http/http.dart' as http;
-
-
 final sl = GetIt.instance;
 
 Future<void> init() async {
@@ -44,15 +41,16 @@ Future<void> init() async {
   );
 
   sl.registerFactory(
-        () => PostsListCubit(getAllPosts: sl()),
+    () => PostsListCubit(getAllPosts: sl()),
   );
 
   sl.registerFactory(
-        () => PostsCommentsListCubit(getAllCommentsForPosts: sl(), sendCommentsForPost: sl()),
+    () => PostsCommentsListCubit(
+        getAllCommentsForPosts: sl(), sendCommentsForPost: sl()),
   );
 
   sl.registerFactory(
-        () => AlbumsListCubit(getAllAlbums: sl(), getAllPhotosForAlbum: sl()),
+    () => AlbumsListCubit(getAllAlbums: sl(), getAllPhotosForAlbum: sl()),
   );
 
   // UseCases
@@ -88,80 +86,77 @@ Future<void> init() async {
 
   // Repository posts
   sl.registerLazySingleton<IPostRepository>(
-        () => PostRepository(
+    () => PostRepository(
       remoteDataSource: sl(),
       localDataSource: sl(),
     ),
   );
 
   sl.registerLazySingleton<IPostRemoteDataSource>(
-        () => PostRemoteDataSource(
+    () => PostRemoteDataSource(
       client: http.Client(),
     ),
   );
 
   sl.registerLazySingleton<IPostLocalDataSource>(
-        () => PostLocalDataSource(sharedPreferences: sl()),
+    () => PostLocalDataSource(sharedPreferences: sl()),
   );
-
 
   // Repository posts comment
   sl.registerLazySingleton<IPostsCommentRepository>(
-        () => PostsCommentRepository(
+    () => PostsCommentRepository(
       remoteDataSource: sl(),
       localDataSource: sl(),
     ),
   );
 
   sl.registerLazySingleton<IPostsCommentRemoteDataSource>(
-        () => PostsCommentRemoteDataSource(
+    () => PostsCommentRemoteDataSource(
       client: http.Client(),
     ),
   );
 
   sl.registerLazySingleton<IPostsCommentLocalDataSource>(
-        () => PostsCommentLocalDataSource(sharedPreferences: sl()),
+    () => PostsCommentLocalDataSource(sharedPreferences: sl()),
   );
-
 
   // Repository albums
   sl.registerLazySingleton<IAlbumRepository>(
-        () => AlbumRepository(
+    () => AlbumRepository(
       remoteDataSource: sl(),
       localDataSource: sl(),
     ),
   );
 
   sl.registerLazySingleton<IAlbumRemoteDataSource>(
-        () => AlbumRemoteDataSource(
+    () => AlbumRemoteDataSource(
       client: http.Client(),
     ),
   );
 
   sl.registerLazySingleton<IAlbumLocalDataSource>(
-        () => AlbumLocalDataSource(sharedPreferences: sl()),
+    () => AlbumLocalDataSource(sharedPreferences: sl()),
   );
 
   // Repository photos
   sl.registerLazySingleton<IPhotoRepository>(
-        () => PhotoRepository(
+    () => PhotoRepository(
       remoteDataSource: sl(),
       localDataSource: sl(),
     ),
   );
 
   sl.registerLazySingleton<IPhotoRemoteDataSource>(
-        () => PhotoRemoteDataSource(
+    () => PhotoRemoteDataSource(
       client: http.Client(),
     ),
   );
 
   sl.registerLazySingleton<IPhotoLocalDataSource>(
-        () => PhotoLocalDataSource(sharedPreferences: sl()),
+    () => PhotoLocalDataSource(sharedPreferences: sl()),
   );
 
   // Core
-
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

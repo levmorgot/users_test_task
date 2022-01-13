@@ -6,8 +6,7 @@ import 'package:users_test_task/features/users/presentation/bloc/users_list_cubi
 class UsersListCubit extends Cubit<UserState> {
   final GetAllUsers getAllUsers;
 
-  UsersListCubit({required this.getAllUsers})
-      : super(UserEmptyState());
+  UsersListCubit({required this.getAllUsers}) : super(UserEmptyState());
 
   void loadUsers() async {
     if (state is UserLoadingState) return;

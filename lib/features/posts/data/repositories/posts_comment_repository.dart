@@ -64,7 +64,7 @@ class PostsCommentRepository implements IPostsCommentRepository {
       int postId, String name, String email, String text) async {
     try {
       final newComment =
-      await remoteDataSource.sendCommentForPost(postId, name, email, text);
+          await remoteDataSource.sendCommentForPost(postId, name, email, text);
       await localDataSource.addNewCommentForPostToCache(postId, newComment);
       return Right(newComment);
     } on CacheException {
@@ -72,7 +72,5 @@ class PostsCommentRepository implements IPostsCommentRepository {
     } on ServerException {
       return Left(ServerFailure());
     }
-
-
   }
 }

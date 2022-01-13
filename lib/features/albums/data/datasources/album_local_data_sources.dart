@@ -32,7 +32,8 @@ class AlbumLocalDataSource implements IAlbumLocalDataSource {
 
   @override
   Future<List<AlbumModel>> getLastAlbumsForUserFromCache(int userId) {
-    final jsonAlbumList = sharedPreferences.getStringList(cacheAlbumsList + '$userId');
+    final jsonAlbumList =
+        sharedPreferences.getStringList(cacheAlbumsList + '$userId');
     if (jsonAlbumList != null && jsonAlbumList.isNotEmpty) {
       try {
         return Future.value(jsonAlbumList
@@ -50,7 +51,8 @@ class AlbumLocalDataSource implements IAlbumLocalDataSource {
 
   @override
   Future<String> getLastEdit(int userId) {
-    final jsonAlbumList = sharedPreferences.getString(cacheAlbumsLastEdit + '$userId');
+    final jsonAlbumList =
+        sharedPreferences.getString(cacheAlbumsLastEdit + '$userId');
     if (jsonAlbumList != null && jsonAlbumList.isNotEmpty) {
       try {
         return Future.value(jsonAlbumList);

@@ -7,7 +7,6 @@ class AlbumsPreviewList extends StatelessWidget {
 
   const AlbumsPreviewList({Key? key, required this.userId}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,4 +41,3 @@ class AlbumsPreviewList extends StatelessWidget {
     );
   }
 }
-

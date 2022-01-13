@@ -51,7 +51,8 @@ class PostLocalDataSource implements IPostLocalDataSource {
 
   @override
   Future<String> getLastEdit(int userId) {
-    final jsonDoctorLastEdit = sharedPreferences.getString(cachePostsLastEdit + '$userId');
+    final jsonDoctorLastEdit =
+        sharedPreferences.getString(cachePostsLastEdit + '$userId');
     if (jsonDoctorLastEdit != null && jsonDoctorLastEdit.isNotEmpty) {
       try {
         return Future.value(jsonDoctorLastEdit);

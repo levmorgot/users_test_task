@@ -19,8 +19,7 @@ class UserRepository implements IUserRepository {
     final allUsers = await _getUsers(() {
       return remoteDataSource.getAllUsers();
     });
-    return allUsers.fold(
-        (failure) => Left(failure), (users) => Right(users));
+    return allUsers.fold((failure) => Left(failure), (users) => Right(users));
   }
 
   Future<Either<Failure, String>> _getLastEdit() async {

@@ -24,12 +24,12 @@ class AlbumsListCubit extends Cubit<AlbumState> {
         (failure) =>
             emit(AlbumErrorState(message: _mapFailureMessage(failure))),
         (albums) async {
-
       List<PhotoEntity> allPhotos = [];
       for (final album in albums) {
         final failureOrPhotos = await getAllPhotosForAlbum(album.id);
         failureOrPhotos.fold(
-            (failure) => emit(AlbumErrorState(message: _mapFailureMessage(failure))),
+            (failure) =>
+                emit(AlbumErrorState(message: _mapFailureMessage(failure))),
             (photos) {
           allPhotos.addAll(photos);
         });

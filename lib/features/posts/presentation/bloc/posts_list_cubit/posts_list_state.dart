@@ -14,11 +14,9 @@ class PostEmptyState extends PostState {
 }
 
 class PostLoadingState extends PostState {
-
   @override
   List<Object> get props => [];
 }
-
 
 class PostLoadedState extends PostState {
   final List<PostEntity> postsList;

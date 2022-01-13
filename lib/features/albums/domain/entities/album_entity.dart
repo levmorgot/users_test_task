@@ -12,6 +12,5 @@ class AlbumEntity extends Equatable {
   });
 
   @override
-  List<Object?> get props =>
-      [id, userId, title];
+  List<Object?> get props => [id, userId, title];
 }

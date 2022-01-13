@@ -11,15 +11,14 @@ import 'package:users_test_task/features/albums/presentation/widgets/albums_card
 class AlbumsList extends StatelessWidget {
   final int userId;
   final int count;
-  const AlbumsList({Key? key, required this.userId, this.count = 0}) : super(key: key);
 
-
+  const AlbumsList({Key? key, required this.userId, this.count = 0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     context.read<AlbumsListCubit>().loadAlbums(userId);
-    return BlocBuilder<AlbumsListCubit, AlbumState>(
-        builder: (context, state) {
+    return BlocBuilder<AlbumsListCubit, AlbumState>(builder: (context, state) {
       List<AlbumEntity> albums = [];
       List<PhotoEntity> allPhotos = [];
       if (state is AlbumLoadingState) {

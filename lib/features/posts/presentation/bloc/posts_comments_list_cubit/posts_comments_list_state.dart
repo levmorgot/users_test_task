@@ -14,11 +14,9 @@ class PostsCommentEmptyState extends PostsCommentState {
 }
 
 class PostsCommentLoadingState extends PostsCommentState {
-
   @override
   List<Object> get props => [];
 }
-
 
 class PostsCommentLoadedState extends PostsCommentState {
   final List<PostsCommentEntity> postsCommentsList;
@@ -37,7 +35,6 @@ class PostsCommentErrorState extends PostsCommentState {
   @override
   List<Object> get props => [message];
 }
-
 
 class PostsCommentSentState extends PostsCommentState {
   final String resultMessage;

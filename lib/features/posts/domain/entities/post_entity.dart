@@ -11,10 +11,8 @@ class PostEntity extends Equatable {
     required this.userId,
     required this.title,
     required this.body,
-
   });
 
   @override
-  List<Object?> get props =>
-      [id, userId, title, body];
+  List<Object?> get props => [id, userId, title, body];
 }

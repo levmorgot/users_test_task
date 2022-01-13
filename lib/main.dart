@@ -9,7 +9,6 @@ import 'package:users_test_task/features/users/presentation/pages/users_screen.d
 import 'package:users_test_task/locator_service.dart' as di;
 import 'package:users_test_task/locator_service.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
@@ -27,10 +26,8 @@ class MyApp extends StatelessWidget {
               create: (context) => sl<UsersListCubit>()..loadUsers()),
           BlocProvider<PostsListCubit>(
               create: (context) => sl<PostsListCubit>()),
-
           BlocProvider<PostsCommentsListCubit>(
               create: (context) => sl<PostsCommentsListCubit>()),
-
           BlocProvider<AlbumsListCubit>(
               create: (context) => sl<AlbumsListCubit>()),
         ],

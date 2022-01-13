@@ -26,13 +26,15 @@ class PhotoLocalDataSource implements IPhotoLocalDataSource {
   Future<void> photosForAlbumToCache(int albumId, List<PhotoModel> albums) {
     final List<String> jsonPhotoList =
         albums.map((album) => json.encode(album.toJson())).toList();
-    sharedPreferences.setStringList(cachePhotosList + '$albumId', jsonPhotoList);
+    sharedPreferences.setStringList(
+        cachePhotosList + '$albumId', jsonPhotoList);
     return Future.value();
   }
 
   @override
   Future<List<PhotoModel>> getLastPhotosForAlbumFromCache(int albumId) {
-    final jsonPhotoList = sharedPreferences.getStringList(cachePhotosList + '$albumId');
+    final jsonPhotoList =
+        sharedPreferences.getStringList(cachePhotosList + '$albumId');
     if (jsonPhotoList != null && jsonPhotoList.isNotEmpty) {
       try {
         return Future.value(jsonPhotoList
@@ -50,7 +52,8 @@ class PhotoLocalDataSource implements IPhotoLocalDataSource {
 
   @override
   Future<String> getLastEdit(int albumId) {
-    final jsonPhotoList = sharedPreferences.getString(cachePhotosLastEdit + '$albumId');
+    final jsonPhotoList =
+        sharedPreferences.getString(cachePhotosLastEdit + '$albumId');
     if (jsonPhotoList != null && jsonPhotoList.isNotEmpty) {
       try {
         return Future.value(jsonPhotoList);

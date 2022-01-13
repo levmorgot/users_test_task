@@ -14,11 +14,9 @@ class UserEmptyState extends UserState {
 }
 
 class UserLoadingState extends UserState {
-
   @override
   List<Object> get props => [];
 }
-
 
 class UserLoadedState extends UserState {
   final List<UserEntity> usersList;

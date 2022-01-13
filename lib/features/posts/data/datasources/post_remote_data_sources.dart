@@ -24,9 +24,7 @@ class PostRemoteDataSource implements IPostRemoteDataSource {
         .get(Uri.parse(url), headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       final posts = json.decode(response.body);
-      return (posts as List)
-          .map((post) => PostModel.fromJson(post))
-          .toList();
+      return (posts as List).map((post) => PostModel.fromJson(post)).toList();
     } else {
       throw ServerException();
     }

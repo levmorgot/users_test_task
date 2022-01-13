@@ -3,6 +3,7 @@ import 'package:users_test_task/features/albums/presentation/widgets/albums_list
 
 class AlbumsPage extends StatelessWidget {
   final int userId;
+
   const AlbumsPage({Key? key, required this.userId}) : super(key: key);
 
   @override

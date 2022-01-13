@@ -9,9 +9,11 @@ abstract class IPostsCommentLocalDataSource {
 
   Future<String> getLastEdit(int postId);
 
-  Future<void> commentsForPostToCache(int postId, List<PostsCommentModel> postsComments);
-  
-  Future<void> addNewCommentForPostToCache(int postId, PostsCommentModel postsComment);
+  Future<void> commentsForPostToCache(
+      int postId, List<PostsCommentModel> postsComments);
+
+  Future<void> addNewCommentForPostToCache(
+      int postId, PostsCommentModel postsComment);
 
   Future<void> lastEditToCache(int postId, String lastEdit);
 }
@@ -25,10 +27,13 @@ class PostsCommentLocalDataSource implements IPostsCommentLocalDataSource {
   PostsCommentLocalDataSource({required this.sharedPreferences});
 
   @override
-  Future<void> commentsForPostToCache(int postId, List<PostsCommentModel> postsComments) {
-    final List<String> jsonPostsCommentList =
-        postsComments.map((postsComment) => json.encode(postsComment.toJson())).toList();
-    sharedPreferences.setStringList(cachePostsCommentsList + '$postId', jsonPostsCommentList);
+  Future<void> commentsForPostToCache(
+      int postId, List<PostsCommentModel> postsComments) {
+    final List<String> jsonPostsCommentList = postsComments
+        .map((postsComment) => json.encode(postsComment.toJson()))
+        .toList();
+    sharedPreferences.setStringList(
+        cachePostsCommentsList + '$postId', jsonPostsCommentList);
     return Future.value();
   }
 
@@ -39,7 +44,8 @@ class PostsCommentLocalDataSource implements IPostsCommentLocalDataSource {
     if (jsonPostsCommentList != null && jsonPostsCommentList.isNotEmpty) {
       try {
         return Future.value(jsonPostsCommentList
-            .map((postsComment) => PostsCommentModel.fromJson(json.decode(postsComment)))
+            .map((postsComment) =>
+                PostsCommentModel.fromJson(json.decode(postsComment)))
             .toList());
       } catch (e) {
         throw CacheException();
@@ -53,7 +59,8 @@ class PostsCommentLocalDataSource implements IPostsCommentLocalDataSource {
 
   @override
   Future<String> getLastEdit(int postId) {
-    final jsonDoctorLastEdit = sharedPreferences.getString(cachePostsCommentsLastEdit + '$postId');
+    final jsonDoctorLastEdit =
+        sharedPreferences.getString(cachePostsCommentsLastEdit + '$postId');
     if (jsonDoctorLastEdit != null && jsonDoctorLastEdit.isNotEmpty) {
       try {
         return Future.value(jsonDoctorLastEdit);
@@ -67,17 +74,21 @@ class PostsCommentLocalDataSource implements IPostsCommentLocalDataSource {
 
   @override
   Future<void> lastEditToCache(int postId, String lastEdit) {
-    sharedPreferences.setString(cachePostsCommentsLastEdit + '$postId', lastEdit);
+    sharedPreferences.setString(
+        cachePostsCommentsLastEdit + '$postId', lastEdit);
     return Future.value();
   }
 
   @override
-  Future<void> addNewCommentForPostToCache(int postId, PostsCommentModel postsComment) async {
+  Future<void> addNewCommentForPostToCache(
+      int postId, PostsCommentModel postsComment) async {
     var oldComments = await getLastCommentsForPostsFromCache(postId);
     oldComments.add(postsComment);
-    final List<String> jsonPostsCommentList =
-    oldComments.map((postsComment) => json.encode(postsComment.toJson())).toList();
-    sharedPreferences.setStringList(cachePostsCommentsList + '$postId', jsonPostsCommentList);
+    final List<String> jsonPostsCommentList = oldComments
+        .map((postsComment) => json.encode(postsComment.toJson()))
+        .toList();
+    sharedPreferences.setStringList(
+        cachePostsCommentsList + '$postId', jsonPostsCommentList);
     return Future.value();
   }
 }

@@ -39,8 +39,8 @@ class PostRepository implements IPostRepository {
       if (date != DateTime.now().toString().substring(0, 10)) {
         try {
           final remotePosts = await getPosts();
-          localDataSource
-              .lastEditToCache(userId, DateTime.now().toString().substring(0, 10));
+          localDataSource.lastEditToCache(
+              userId, DateTime.now().toString().substring(0, 10));
           localDataSource.postForUserToCache(userId, remotePosts);
           return Right(remotePosts);
         } on ServerException {
@@ -48,7 +48,8 @@ class PostRepository implements IPostRepository {
         }
       } else {
         try {
-          final localFilials = await localDataSource.getLastPostsForUserFromCache(userId);
+          final localFilials =
+              await localDataSource.getLastPostsForUserFromCache(userId);
           return Right(localFilials);
         } on CacheException {
           return Left(CacheFailure());

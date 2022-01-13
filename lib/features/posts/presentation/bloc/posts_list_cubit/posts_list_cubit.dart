@@ -6,8 +6,7 @@ import 'package:users_test_task/features/posts/presentation/bloc/posts_list_cubi
 class PostsListCubit extends Cubit<PostState> {
   final GetAllPostsForUser getAllPosts;
 
-  PostsListCubit({required this.getAllPosts})
-      : super(PostEmptyState());
+  PostsListCubit({required this.getAllPosts}) : super(PostEmptyState());
 
   void loadPosts(int userId) async {
     if (state is PostLoadingState) return;

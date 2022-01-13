@@ -14,9 +14,8 @@ class AlbumCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<PhotoEntity> photosForAlbum = photos
-        .where((photo) => photo.albumId == album.id)
-        .toList();
+    final List<PhotoEntity> photosForAlbum =
+        photos.where((photo) => photo.albumId == album.id).toList();
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -43,8 +42,7 @@ class AlbumCard extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
-              PhotosPreviewRow(
-                  photos: photosForAlbum)
+              PhotosPreviewRow(photos: photosForAlbum)
             ],
           ),
         ),

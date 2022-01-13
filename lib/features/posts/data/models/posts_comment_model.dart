@@ -18,7 +18,9 @@ class PostsCommentModel extends PostsCommentEntity {
   factory PostsCommentModel.fromJson(Map<String, dynamic> json) {
     return PostsCommentModel(
       id: json['id'],
-      postId: json['postId'].runtimeType == int ? json['postId'] : int.parse(json['postId']),
+      postId: json['postId'].runtimeType == int
+          ? json['postId']
+          : int.parse(json['postId']),
       name: json['name'],
       email: json['email'],
       body: json['body'],
