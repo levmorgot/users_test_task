@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:users_test_task/features/albums/domain/entities/photo_entity.dart';
-import 'package:users_test_task/features/albums/presentation/widgets/photo_full_size_widget.dart';
+import 'package:users_test_task/features/albums/presentation/widgets/photo_cache_image_widget.dart';
 
 class PhotoSliderElement extends StatelessWidget {
   final PhotoEntity photo;
@@ -13,9 +13,10 @@ class PhotoSliderElement extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          PhotoFullSize(
-            photo: photo,
-            size: 300.0,
+          PhotoCacheImage(
+            height: 300,
+            width: 300,
+            photoUrl: photo.url,
           ),
           const SizedBox(
             height: 10,
