@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:users_test_task/common/widgets/error_message_widget.dart';
+import 'package:users_test_task/common/widgets/loading_indicator_widget.dart';
 import 'package:users_test_task/features/posts/domain/entities/post_entity.dart';
 import 'package:users_test_task/features/posts/presentation/bloc/posts_list_cubit/posts_list_cubit.dart';
 import 'package:users_test_task/features/posts/presentation/bloc/posts_list_cubit/posts_list_state.dart';
@@ -17,9 +19,11 @@ class PostsListPreview extends StatelessWidget {
     return BlocBuilder<PostsListCubit, PostState>(builder: (context, state) {
       List<PostEntity> posts = [];
       if (state is PostLoadingState) {
-        return _loadingIndicator();
+        return const LoadingIndicator();
       } else if (state is PostErrorState) {
-        return Text(state.message);
+        return ErrorMessage(
+          message: state.message,
+        );
       } else if (state is PostLoadedState) {
         posts = state.postsList;
         posts = posts.isNotEmpty
@@ -68,14 +72,5 @@ class PostsListPreview extends StatelessWidget {
         ],
       );
     });
-  }
-
-  Widget _loadingIndicator() {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:users_test_task/common/widgets/error_message_widget.dart';
+import 'package:users_test_task/common/widgets/loading_indicator_widget.dart';
 import 'package:users_test_task/features/albums/domain/entities/album_entity.dart';
 import 'package:users_test_task/features/albums/domain/entities/photo_entity.dart';
 import 'package:users_test_task/features/albums/presentation/bloc/albums_list_cubit/albums_list_cubit.dart';
@@ -21,9 +23,11 @@ class AlbumsList extends StatelessWidget {
       List<AlbumEntity> albums = [];
       List<PhotoEntity> allPhotos = [];
       if (state is AlbumLoadingState) {
-        return _loadingIndicator();
+        return const LoadingIndicator();
       } else if (state is AlbumErrorState) {
-        return Text(state.message);
+        return ErrorMessage(
+          message: state.message,
+        );
       } else if (state is AlbumLoadedState) {
         albums = state.albumsList;
         allPhotos = state.allPhotos;
@@ -41,14 +45,5 @@ class AlbumsList extends StatelessWidget {
         itemCount: count > 0 ? count : albums.length,
       );
     });
-  }
-
-  Widget _loadingIndicator() {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
   }
 }

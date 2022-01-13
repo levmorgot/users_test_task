@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:users_test_task/common/widgets/error_message_widget.dart';
+import 'package:users_test_task/common/widgets/loading_indicator_widget.dart';
 import 'package:users_test_task/features/posts/domain/entities/posts_comment_entity.dart';
 import 'package:users_test_task/features/posts/presentation/bloc/posts_comments_list_cubit/posts_comments_list_cubit.dart';
 import 'package:users_test_task/features/posts/presentation/bloc/posts_comments_list_cubit/posts_comments_list_state.dart';
@@ -19,11 +21,13 @@ class PostsCommentsList extends StatelessWidget {
         builder: (context, state) {
       List<PostsCommentEntity> comments = [];
       if (state is PostsCommentLoadingState) {
-        return _loadingIndicator();
+        return const LoadingIndicator();
       } else if (state is PostsCommentSentState) {
         addCommentResult = Text(state.resultMessage);
       } else if (state is PostsCommentErrorState) {
-        return Text(state.message);
+        return ErrorMessage(
+          message: state.message,
+        );
       } else if (state is PostsCommentLoadedState) {
         comments = state.postsCommentsList;
       }
@@ -72,14 +76,5 @@ class PostsCommentsList extends StatelessWidget {
         ],
       );
     });
-  }
-
-  Widget _loadingIndicator() {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
   }
 }
